@@ -36,7 +36,27 @@
     "write": true,
     "min":   0,
     "max":   255
-
+  }
+},"camera_id":
+{
+  "scope": "both",
+  "common":{
+    "name":  "camera_id",
+    "def":   0,
+    "type":  "number",
+    "read":  true,
+    "write": true,
+    "min":   0,
+    "max":   255
+  }
+},"camera_name":
+{
+  "scope": "both",
+  "common":{
+    "name":  "camera_name",
+    "type":  "string",
+    "read":  true,
+    "write": true
   }
 },"contrast":
 {
