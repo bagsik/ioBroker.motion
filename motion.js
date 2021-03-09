@@ -36,9 +36,9 @@ adapter.on('stateChange', function (id, state) {
 	var src_ent = src_arr[2];
 	var src_con = src_arr[3];
 	var src_key = src_arr[4];
-	
+
 	adapter.log.debug('stateChange ' + id + ' ' + JSON.stringify(state));
-	
+
 	if (typeof(mymotion)=='object'){
 		if (src_con == 'control') {
 			adapter.log.info(src_con + '.' + src_key +'.'+ state.val);
@@ -60,7 +60,7 @@ adapter.on('stateChange', function (id, state) {
 
     //console.log(state["val"]);
     // you can use the ack flag to detect if state is desired or acknowledged
-  
+
 
 // Some message was sent to adapter instance over message box. Used by email, pushover, text2speech, ...
 adapter.on('message', function (obj) {
@@ -85,14 +85,14 @@ adapter.on('ready', function () {
 
 function main() {
     mymotion = new mymotionmod(adapter.config['address'],adapter.config['port_http'],'','',adapter.config['port_event'],function(devices){
-    console.log(Object.keys(devices).length); 
+    console.log(Object.keys(devices).length);
     var deviceobj = {};
        for (var device in devices){
            deviceobj = devices[device];
-            var dev_name = device;
-            if ((Object.keys(devices).length) == 1){ 
-	    	if (dev_name == 'default'){dev_name = 'thread0'}; 
-	    }; 
+            var dev_name = 'thread' + deviceobj['camera_id'].value;
+            if ((Object.keys(devices).length) == 1){
+	    	if (dev_name == 'default'){dev_name = 'thread0'};
+	    };
 	    var mydevice =  {type: 'device',common: {type: 'boolean'}, native:{id: dev_name}}
             adapter.setObject(dev_name, mydevice);
             var mychannel = {type: 'channel',  common:{name: 'config'}, native:{id: dev_name + 'channel'}};
